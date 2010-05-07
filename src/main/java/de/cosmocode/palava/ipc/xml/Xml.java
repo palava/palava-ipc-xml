@@ -16,8 +16,19 @@
 
 package de.cosmocode.palava.ipc.xml;
 
+import com.google.common.base.Predicate;
+
 public final class Xml {
 
+    static final Predicate<Object> XML_OR_ANY = new Predicate<Object>() {
+
+        @Override
+        public boolean apply(Object input) {
+            return input == null || input == Xml.class;
+        }
+        
+    };
+    
     private Xml() {
         
     }
