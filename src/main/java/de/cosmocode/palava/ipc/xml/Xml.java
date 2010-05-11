@@ -16,11 +16,29 @@
 
 package de.cosmocode.palava.ipc.xml;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 import com.google.common.base.Predicate;
+import com.google.inject.BindingAnnotation;
 
-public final class Xml {
+/**
+ * Binding annotation and utility class for xml communication.
+ *
+ * @since 1.0
+ * @author Willi Schoenborn
+ */
+@Retention(RetentionPolicy.RUNTIME)
+@Target({
+    ElementType.METHOD,
+    ElementType.PARAMETER
+})
+@BindingAnnotation
+public @interface Xml {
 
-    static final Predicate<Object> XML_OR_ANY = new Predicate<Object>() {
+    Predicate<Object> OR_ANY = new Predicate<Object>() {
 
         @Override
         public boolean apply(Object input) {
@@ -29,8 +47,4 @@ public final class Xml {
         
     };
     
-    private Xml() {
-        
-    }
-
 }

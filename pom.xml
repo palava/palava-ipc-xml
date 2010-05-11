@@ -18,6 +18,11 @@
       <artifactId>slf4j-api</artifactId>
   	</dependency>
     <dependency>
+      <groupId>de.cosmocode.palava</groupId>
+      <artifactId>palava-ipc-netty</artifactId>
+      <version>[1.0-SNAPSHOT,2)</version>
+    </dependency>
+    <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>r03</version>
