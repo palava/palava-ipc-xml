@@ -16,35 +16,32 @@
 
 package de.cosmocode.palava.ipc.xml;
 
+import javax.annotation.concurrent.ThreadSafe;
+
 import org.jboss.netty.buffer.ChannelBuffer;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
-import org.jboss.netty.handler.codec.frame.FrameDecoder;
-import org.jboss.netty.handler.codec.replay.ReplayingDecoder;
-import org.jboss.netty.handler.codec.replay.VoidEnum;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jboss.netty.channel.ChannelHandler.Sharable;
+import org.jboss.netty.handler.codec.http.HttpRequest;
+import org.jboss.netty.handler.codec.oneone.OneToOneDecoder;
 
 /**
- * A {@link FrameDecoder} for xml.
- * 
- * TODO use http + xml including content length
+ * Decodes {@link HttpRequest}s into {@link ChannelBuffer}s.
  *
  * @since 1.0
  * @author Willi Schoenborn
  */
-public final class XmlFrameDecoder extends ReplayingDecoder<VoidEnum> {
-
-    private static final Logger LOG = LoggerFactory.getLogger(XmlFrameDecoder.class);
+@Sharable
+@ThreadSafe
+public final class HttpContentDecoder extends OneToOneDecoder {
 
     @Override
-    protected Object decode(ChannelHandlerContext context, Channel channel, ChannelBuffer buffer, VoidEnum state)
-        throws Exception {
-
-        // TODO let sax parser parse the incoming chunks and 
-        // TODO send events to content handler which produces dom elements?! 
-        
-        return null;
+    protected Object decode(ChannelHandlerContext context, Channel channel, Object message) throws Exception {
+        if (message instanceof HttpRequest) {
+            return HttpRequest.class.cast(message).getContent();
+        } else {
+            return message;
+        }
     }
-    
+
 }
