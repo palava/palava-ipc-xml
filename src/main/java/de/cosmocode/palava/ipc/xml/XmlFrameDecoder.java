@@ -27,6 +27,8 @@ import org.slf4j.LoggerFactory;
 
 /**
  * A {@link FrameDecoder} for xml.
+ * 
+ * TODO use http + xml including content length
  *
  * @since 1.0
  * @author Willi Schoenborn
@@ -39,9 +41,9 @@ public final class XmlFrameDecoder extends ReplayingDecoder<VoidEnum> {
     protected Object decode(ChannelHandlerContext context, Channel channel, ChannelBuffer buffer, VoidEnum state)
         throws Exception {
 
+        // TODO let sax parser parse the incoming chunks and 
+        // TODO send events to content handler which produces dom elements?! 
         
-        
-        // TODO Auto-generated method stub
         return null;
     }
     
