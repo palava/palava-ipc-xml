@@ -19,6 +19,11 @@
   	</dependency>
     <dependency>
       <groupId>de.cosmocode.palava</groupId>
+      <artifactId>palava-ipc-protocol</artifactId>
+      <version>[1.0-SNAPSHOT,2)</version>
+    </dependency>
+    <dependency>
+      <groupId>de.cosmocode.palava</groupId>
       <artifactId>palava-ipc-netty</artifactId>
       <version>[1.0-SNAPSHOT,2)</version>
     </dependency>
