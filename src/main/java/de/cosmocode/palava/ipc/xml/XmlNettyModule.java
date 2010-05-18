@@ -49,8 +49,6 @@ public final class XmlNettyModule implements Module {
         // custom decoders/encoders
         binder.bind(HttpContentDecoder.class).in(Singleton.class);
         binder.bind(HttpContentEncoder.class).in(Singleton.class);
-        binder.bind(XmlDocumentDecoder.class).in(Singleton.class);
-        binder.bind(XmlDocumentEncoder.class).in(Singleton.class);
     }
 
     /**
@@ -75,21 +73,17 @@ public final class XmlNettyModule implements Module {
      * @param compressor the http compressor
      * @param httpContentDecoder the http content decoder
      * @param httpContentEncoder the http content encoder
-     * @param documentDecoder the xml document decoder
-     * @param documentEncoder the xml document encoder
      * @return a new {@link ChannelPipeline}
      */
     @Provides
     @Xml
     ChannelPipeline provideChannelPipeline(HttpRequestDecoder requestDecoder, HttpChunkAggregator chunkAggregator,
         HttpResponseEncoder responseEncoder, HttpContentCompressor compressor,
-        HttpContentDecoder httpContentDecoder, HttpContentEncoder httpContentEncoder,
-        XmlDocumentDecoder documentDecoder, XmlDocumentEncoder documentEncoder) {
+        HttpContentDecoder httpContentDecoder, HttpContentEncoder httpContentEncoder) {
         return Channels.pipeline(
             requestDecoder, chunkAggregator,
             responseEncoder, compressor,
-            httpContentDecoder, httpContentEncoder,
-            documentDecoder, documentEncoder
+            httpContentDecoder, httpContentEncoder
         );
     }
     
