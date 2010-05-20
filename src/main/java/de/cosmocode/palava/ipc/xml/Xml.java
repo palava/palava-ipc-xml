@@ -21,7 +21,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import com.google.common.base.Predicate;
 import com.google.inject.BindingAnnotation;
 
 /**
@@ -38,13 +37,4 @@ import com.google.inject.BindingAnnotation;
 @BindingAnnotation
 public @interface Xml {
 
-    Predicate<Object> OR_ANY = new Predicate<Object>() {
-
-        @Override
-        public boolean apply(Object input) {
-            return input == null || input == Xml.class;
-        }
-        
-    };
-    
 }
